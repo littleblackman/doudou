@@ -1,7 +1,7 @@
 <section>
 
-  <div style="float: right">
-    <a href="<?=HOST;?>creation-planning" class="btn-floating btn-large waves-effect waves-light red" title="créer un planning"><i class="material-icons">add</i></a>
+  <div id="createPlanningButton">
+    <a href="<?=HOST;?>creation-planning" class="btn-floating btn-large waves-effect waves-light red lighten-1" title="créer un planning"><i class="material-icons">add</i></a>
   </div>
 
 
@@ -32,10 +32,10 @@
            </p>
          </div>
          <div class="card-action">
-           <a href="<?= HOST;?>edit-planning/<?= $planning->getId()?>" target="_blank">
+           <a href="<?= HOST;?>modification-planning/<?= $planning->getId()?>">
              Modifier
            </a>
-           <a href="<?= HOST;?>delete-planning/<?= $planning->getId()?>" target="_blank">
+           <a href="<?= HOST;?>delete-planning/<?= $planning->getId()?>">
              Supprimer
            </a>
          </div>

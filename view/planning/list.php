@@ -1,7 +1,7 @@
 <section>
 
-  <div style="float: right">
-    <a href="<?=HOST;?>creation-planning" class="btn-floating btn-large waves-effect waves-light red" title="créer un planning"><i class="material-icons">add</i></a>
+  <div id="createPlanningButton">
+    <a href="<?=HOST;?>creation-planning" class="btn-floating btn-large waves-effect waves-light red lighten-1" title="créer un planning"><i class="material-icons">add</i></a>
   </div>
 
   <h1>Vos planning</h1>

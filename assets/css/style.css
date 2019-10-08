@@ -6,7 +6,7 @@ h2 { font-size: 1.8em; font-weight: 700}
 h3 { font-size: 1.6em; font-weight: 500}
 h4 { font-size: 1.4em; font-weight: 500}
 h5 { font-size: 1.2em; font-weight: 500}
-h6 { font-size: 1.2em; font-weight: 400}
+h6 { font-size: 1em; font-weight: 400}
 
 .btn-fullwidth { width: 100%}
 
@@ -17,3 +17,10 @@ nav a { margin-right: 30px;}
 nav a:hover { color: grey}
 #nav-right {width: 40%; float: right; text-align: right }
 #nav-left { width: 60%; float: left }
+
+#createPlanningButton { margin-top: 20px; float: right}
+
+/************ CALENDAR ********/
+.activeday { width: 14%; float: left}
+.activeday h6 { text-align: center}
+.timeSlot { padding: 2px; border: 1px solid darkblue; text-align: center; cursor: pointer}

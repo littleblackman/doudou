@@ -40,7 +40,15 @@ abstract class EntityConfiguration
     {
         $entityManager = $this->getEntityName().'Manager';
         $manager = new $entityManager();
-        $manager->save($this);
+        return $manager->save($this);
+
+    }
+
+    public function delete()
+    {
+        $entityManager = $this->getEntityName().'Manager';
+        $manager = new $entityManager();
+        $manager->delete($this);
     }
 
 

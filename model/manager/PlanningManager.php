@@ -38,27 +38,31 @@ class PlanningManager extends BddManager
         $query = "SELECT * FROM planning p
                   LEFT JOIN user u ON u.user_id = p.user_id
                   LEFT JOIN person pe ON pe.person_id = u.person_id
-                  LEFT JOIN time_slot ts ON ts.planning_id = p.planning_id
-                  WHERE p.planning_id = :id
-                  ORDER BY ts.date_available, ts.time_start";
+                  WHERE p.planning_id = :id";
         $stmt = $this->prepare($query);
         $stmt->bindValue(':id', $id);
         $stmt->execute();
-        if(!$datas = $stmt->fetchAll(PDO::FETCH_ASSOC)) return null;
+        if(!$data = $stmt->fetch(PDO::FETCH_ASSOC)) return null;
 
-        foreach($datas as $key => $data)
-        {
-            if($key == 0) {
-              $person = new Person($data);
-              $user = new User($data);
-              $user->setPerson($person);
-              $planning = new Planning($data);
-              $planning->setUser($user);
+        $person = new Person($data);
+        $user = new User($data);
+        $user->setPerson($person);
+        $planning = new Planning($data);
+        $planning->setUser($user);
+
+        // add time slot
+        $query = "SELECT * FROM time_slot WHERE planning_id = :id ORDER BY date_available, time_start";
+        $stmt = $this->prepare($query);
+        $stmt->bindValue(':id', $id);
+        $stmt->execute();
+        $datas = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+        if($datas) {
+            foreach($datas as $data) {
+                $timeSlot = new TimeSlot($data);
+                $planning->addTimeSlot($timeSlot);
             }
-            $timeSlot = new TimeSlot($data);
-            $planning->addTimeSlot($timeSlot);
         }
-
         return $planning;
 
     }
@@ -79,7 +83,18 @@ class PlanningManager extends BddManager
           $stmt->bindValue(':is_multiple_users', $object->getIsMultipleUsers());
           $stmt->bindValue(':user_id', $object->getUser()->getId());
           $stmt->execute();
-
+          $lastId =  $this->connexion()->lastInsertId();
         }
+
+        return $lastId;
+
+    }
+
+    public function delete($object)
+    {
+        $query = "DELETE FROM planning where planning_id = :id";
+        $stmt = $this->prepare($query);
+        $stmt->bindValue(':id', $object->getId());
+        $stmt->execute();
     }
 }

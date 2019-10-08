@@ -7,6 +7,8 @@ abstract class BddManager
 {
     private $bdd;
 
+    abstract public function save($object);
+
     public function __construct()
     {
       try {
@@ -15,8 +17,6 @@ abstract class BddManager
         die($e->getMessage());
       }
     }
-
-    abstract public function save($object);
 
     public function connexion()
     {

@@ -9,6 +9,10 @@ class TimeSlot extends EntityConfiguration
   private $timeEnd;
   private $isBooked;
 
+  public function getEntityName()
+  {
+      return "TimeSlot";
+  }
 
   public function setTimeSlotId(Int $timeSlotId)
   {

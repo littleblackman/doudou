@@ -27,12 +27,29 @@ class PlanningController extends Controller
     $this->render('planning/edit', ['planning' => $planning]);
   }
 
+  public function delete($request)
+  {
+    $manager = new PlanningManager();
+    $planning = $manager->find($request->get('id'));
+    $planning->delete();
+    $this->redirect('home');
+  }
+
+
+  public function edit($request)
+  {
+    $manager = new PlanningManager();
+    $planning = $manager->find($request->get('id'));
+    $calendar = new CalendarService();
+    $this->render('planning/edit', ['planning' => $planning, 'calendar' => $calendar]);
+  }
+
   public function update($request)
   {
       $planning = new Planning($request->get('data'));
       $planning->setUser($this->session->getUser());
-      $planning->save();
-      $this->redirect('modification-planning/'.$planning->getId());
+      $last_id = $planning->save();
+      $this->redirect('modification-planning/'.$last_id);
   }
 
 }

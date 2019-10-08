@@ -42,6 +42,7 @@ class MyConfiguration
         define('MANAGER', ROOT.'model/manager/');
         define('APP', ROOT.'app/');
         define('CORE', ROOT.'app/core/');
+        define('SERVICE', ROOT.'service/');
 
         // set assets url
         define('ASSETS', HOST.'assets/');
@@ -79,6 +80,9 @@ class MyConfiguration
         } else if (file_exists(CONTROLLER.'admin/'.$class.'.php'))
         {
             include_once (CONTROLLER.'admin/'.$class.'.php');
+        } else if (file_exists(SERVICE.$class.'.php'))
+        {
+            include_once (SERVICE.$class.'.php');
         }
 
     }
