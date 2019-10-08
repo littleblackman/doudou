@@ -9,6 +9,11 @@ class User extends EntityConfiguration
     private $password;
     private $person;
 
+    public function getEntityName()
+    {
+        return "User";
+    }
+
     public function setUserId(Int $userId)
     {
         $this->userId = $userId;

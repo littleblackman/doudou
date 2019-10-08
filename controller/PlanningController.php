@@ -10,7 +10,7 @@ class PlanningController extends Controller
   {
     $manager = new PlanningManager();
     $plannings = $manager->findAll();
-    $this->render('home', ['plannings' => $plannings]);
+    $this->render('planning/list', ['plannings' => $plannings]);
   }
 
 
@@ -18,7 +18,21 @@ class PlanningController extends Controller
   {
     $manager = new PlanningManager();
     $planning = $manager->find($request->get('id'));
-    $this->render('show', ['planning' => $planning]);
+    $this->render('planning/show', ['planning' => $planning]);
+  }
+
+  public function create($request)
+  {
+    $planning = new Planning();
+    $this->render('planning/edit', ['planning' => $planning]);
+  }
+
+  public function update($request)
+  {
+      $planning = new Planning($request->get('data'));
+      $planning->setUser($this->session->getUser());
+      $planning->save();
+      $this->redirect('modification-planning/'.$planning->getId());
   }
 
 }

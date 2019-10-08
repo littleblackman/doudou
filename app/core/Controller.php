@@ -9,17 +9,24 @@ class Controller
 {
 
     private $view;
+    public $session;
 
     public function __construct()
     {
         $this->view = new View();
+        $this->session = new Session();
     }
 
 
     public function render($template, $datas = [])
     {
+        $datas['session'] = $this->session;
         $myView = $this->view;
         $myView->setTemplate($template);
         $myView->render($datas);
+    }
+
+    public function redirect($template) {
+      $this->view->redirect($template);
     }
 }

@@ -5,13 +5,18 @@
 class Planning extends EntityConfiguration
 {
 
-    private $planning_id;
+    private $planningId;
     private $name;
     private $description;
     private $publicLink;
-    private $isMultipleUsers;
+    private $isMultipleUsers = 0;
     private $user;
-    private $timeSlots;
+    private $timeSlots = [];
+
+    public function getEntityName()
+    {
+        return "Planning";
+    }
 
     public function setPlanningId(Int $planningId)
     {
@@ -91,5 +96,13 @@ class Planning extends EntityConfiguration
         return $this->timeSlots;
     }
 
+    public function nbTimeSlots()
+    {
+        return count($this->getTimeSlots());
+    }
 
+    public function getNbBooked()
+    {
+        return null;
+    }
 }

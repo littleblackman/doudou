@@ -54,6 +54,7 @@ class MyConfiguration
         define('DB_PWD', $parameters['db_pwd']);
         define('DB_NAME', $parameters['db_name']);
         define('DB_HOST', $parameters['db_host']);
+
     }
 
     /**

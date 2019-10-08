@@ -24,4 +24,9 @@ class UserManager extends BddManager
         return $user;
     }
 
+
+    public function save($object)
+    {
+
+    }
 }

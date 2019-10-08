@@ -16,6 +16,8 @@ abstract class BddManager
       }
     }
 
+    abstract public function save($object);
+
     public function connexion()
     {
         return $this->bdd;
@@ -25,4 +27,5 @@ abstract class BddManager
     {
         return $this->connexion()->prepare($query);
     }
+
 }

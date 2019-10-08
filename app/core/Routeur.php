@@ -33,6 +33,7 @@ class Routeur
         } else {
             $controller = "ErrorPage";
             $method     = "show404";
+            $params     = null;
 
         }
 

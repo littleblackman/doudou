@@ -1,8 +1,5 @@
 <?php
 
-
-
-
 class PlanningManager extends BddManager
 {
 
@@ -64,5 +61,25 @@ class PlanningManager extends BddManager
 
         return $planning;
 
+    }
+
+    public function save($object)
+    {
+        if(!$object->getId()) {
+          $query = "INSERT INTO planning SET
+                    name = :name,
+                    description = :description,
+                    public_link = :public_link,
+                    is_multiple_users = :is_multiple_users,
+                    user_id = :user_id";
+          $stmt = $this->prepare($query);
+          $stmt->bindValue(':name', $object->getName());
+          $stmt->bindValue(':description', $object->getDescription());
+          $stmt->bindValue(':public_link', $object->getPublicLink());
+          $stmt->bindValue(':is_multiple_users', $object->getIsMultipleUsers());
+          $stmt->bindValue(':user_id', $object->getUser()->getId());
+          $stmt->execute();
+
+        }
     }
 }

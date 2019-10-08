@@ -15,6 +15,8 @@ abstract class EntityConfiguration
       if($datas) $this->hydrate($datas);
     }
 
+    abstract public function getEntityName();
+
     public function hydrate($datas)
     {
       foreach ($datas as $key => $value)
@@ -32,5 +34,15 @@ abstract class EntityConfiguration
           }
       }
     }
+
+
+    public function save()
+    {
+        $entityManager = $this->getEntityName().'Manager';
+        $manager = new $entityManager();
+        $manager->save($this);
+    }
+
+
 
 }

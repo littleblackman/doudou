@@ -10,6 +10,10 @@ class Person extends EntityConfiguration
     private $lastname;
     private $email;
 
+    public function getEntityName()
+    {
+        return "Person";
+    }
 
     public function setPersonId(Int $personId)
     {
