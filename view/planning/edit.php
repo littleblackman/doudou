@@ -3,7 +3,7 @@
 <div class="row">
     <form action = "<?= HOST;?>update-planning" method="POST" class="col s12">
       <?php if($planning->getId() != null):?>
-        <input type="hidden" name="data[id]" value="<?= $planning->getId();?>"/>
+        <input type="hidden" name="data[id_planning]" value="<?= $planning->getId();?>"/>
       <?php endif;?>
       <div class="row">
         <div class="input-field col s6">
@@ -35,5 +35,7 @@
     </form>
   </div>
   <br/>
-  <h2>Ajouter des plages horaires</h2>
-  <?php include('_calendar.php');?>
+  <?php if(isset($calendar)):?>
+    <h2>Ajouter des plages horaires</h2>
+    <?php include('_calendar.php');?>
+  <?php endif;?>

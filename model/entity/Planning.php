@@ -5,7 +5,7 @@
 class Planning extends EntityConfiguration
 {
 
-    private $planningId;
+    private $idPlanning;
     private $name;
     private $description;
     private $publicLink;
@@ -18,15 +18,15 @@ class Planning extends EntityConfiguration
         return "Planning";
     }
 
-    public function setPlanningId(Int $planningId)
+    public function setIdPlanning(Int $idPlanning)
     {
-        $this->planningId = $planningId;
+        $this->idPlanning = $idPlanning;
         return $this;
     }
 
     public function getId()
     {
-        return $this->planningId;
+        return $this->idPlanning;
     }
 
     public function setName(String $name)

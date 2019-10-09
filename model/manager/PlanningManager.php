@@ -38,7 +38,7 @@ class PlanningManager extends BddManager
         $query = "SELECT * FROM planning p
                   LEFT JOIN user u ON u.user_id = p.user_id
                   LEFT JOIN person pe ON pe.person_id = u.person_id
-                  WHERE p.planning_id = :id";
+                  WHERE p.id_planning = :id";
         $stmt = $this->prepare($query);
         $stmt->bindValue(':id', $id);
         $stmt->execute();
@@ -51,7 +51,7 @@ class PlanningManager extends BddManager
         $planning->setUser($user);
 
         // add time slot
-        $query = "SELECT * FROM time_slot WHERE planning_id = :id ORDER BY date_available, time_start";
+        $query = "SELECT * FROM time_slot WHERE id_planning = :id ORDER BY date_available, time_start";
         $stmt = $this->prepare($query);
         $stmt->bindValue(':id', $id);
         $stmt->execute();
@@ -69,6 +69,8 @@ class PlanningManager extends BddManager
 
     public function save($object)
     {
+
+
         if(!$object->getId()) {
           $query = "INSERT INTO planning SET
                     name = :name,
@@ -76,15 +78,26 @@ class PlanningManager extends BddManager
                     public_link = :public_link,
                     is_multiple_users = :is_multiple_users,
                     user_id = :user_id";
-          $stmt = $this->prepare($query);
-          $stmt->bindValue(':name', $object->getName());
-          $stmt->bindValue(':description', $object->getDescription());
-          $stmt->bindValue(':public_link', $object->getPublicLink());
-          $stmt->bindValue(':is_multiple_users', $object->getIsMultipleUsers());
-          $stmt->bindValue(':user_id', $object->getUser()->getId());
-          $stmt->execute();
-          $lastId =  $this->connexion()->lastInsertId();
+        } else {
+          $query = "UPDATE planning SET
+                        name = :name,
+                        description = :description,
+                        public_link = :public_link,
+                        is_multiple_users = :is_multiple_users,
+                        user_id = :user_id
+                        WHERE id_planning = :id
+                      ";
         }
+        $stmt = $this->prepare($query);
+        if($object->getId()) $stmt->bindValue(':id', $object->getId());
+        $stmt->bindValue(':name', $object->getName());
+        $stmt->bindValue(':description', $object->getDescription());
+        $stmt->bindValue(':public_link', $object->getPublicLink());
+        $stmt->bindValue(':is_multiple_users', $object->getIsMultipleUsers());
+        $stmt->bindValue(':user_id', $object->getUser()->getId());
+        $stmt->execute();
+
+        (!$object->getId()) ? $lastId =  $this->connexion()->lastInsertId() : $lastId = $object->getId();
 
         return $lastId;
 
@@ -92,7 +105,7 @@ class PlanningManager extends BddManager
 
     public function delete($object)
     {
-        $query = "DELETE FROM planning where planning_id = :id";
+        $query = "DELETE FROM planning where id_planning = :id";
         $stmt = $this->prepare($query);
         $stmt->bindValue(':id', $object->getId());
         $stmt->execute();

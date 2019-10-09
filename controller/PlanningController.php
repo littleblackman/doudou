@@ -52,4 +52,11 @@ class PlanningController extends Controller
       $this->redirect('modification-planning/'.$last_id);
   }
 
+  public function addTimeSlot($request)
+  {
+      $timeSlot = new TimeSlot($request->getParams());
+      //$timeSlot->save();
+      echo '<pre>'; print_r($timeSlot); exit;
+  }
+
 }

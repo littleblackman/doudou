@@ -3,26 +3,27 @@
 class TimeSlot extends EntityConfiguration
 {
 
-  private $timeSlotId;
+  private $idTimeSlot;
   private $dateAvailable;
   private $timeStart;
   private $timeEnd;
   private $isBooked;
+  private $planningId;
 
   public function getEntityName()
   {
       return "TimeSlot";
   }
 
-  public function setTimeSlotId(Int $timeSlotId)
+  public function setIdTimeSlot(Int $idTimeSlot)
   {
-      $this->timeSlotId = $timeSlotId;
+      $this->idTimeSlot = $idTimeSlot;
       return $this;
   }
 
   public function getId()
   {
-      return $this->planningId;
+      return $this->idTimeSlot;
   }
 
   public function setDateAvailable($dateAvailable)
@@ -79,6 +80,16 @@ class TimeSlot extends EntityConfiguration
   public function getIsBooked()
   {
       return $this->isBooked;
+  }
+
+  public function setPlanningId($planningId) {
+    $this->planningId = $planningId;
+    return $this;
+  }
+
+  public function getPlanningId()
+  {
+      return $this->planningId;
   }
 
 }
