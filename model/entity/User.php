@@ -14,6 +14,16 @@ class User extends EntityConfiguration
         return "User";
     }
 
+    public function getTableName()
+    {
+        return "user";
+    }
+
+    public function getPrimaryKey()
+    {
+        return "user_id";
+    }
+
     public function setUserId(Int $userId)
     {
         $this->userId = $userId;

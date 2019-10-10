@@ -37,5 +37,7 @@
   <br/>
   <?php if(isset($calendar)):?>
     <h2>Ajouter des plages horaires</h2>
-    <?php include('_calendar.php');?>
+    <div id="calendarTimeSlot">
+      <?php include('_calendar.php');?>
+    </div>
   <?php endif;?>

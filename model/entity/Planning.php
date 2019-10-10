@@ -12,10 +12,22 @@ class Planning extends EntityConfiguration
     private $isMultipleUsers = 0;
     private $user;
     private $timeSlots = [];
+    private $nbTimeSlots;
+    private $totalBooked = 0;
 
     public function getEntityName()
     {
         return "Planning";
+    }
+
+    public function getTableName()
+    {
+        return "planning";
+    }
+
+    public function getPrimaryKey()
+    {
+        return "id_planning";
     }
 
     public function setIdPlanning(Int $idPlanning)
@@ -96,10 +108,28 @@ class Planning extends EntityConfiguration
         return $this->timeSlots;
     }
 
-    public function nbTimeSlots()
+    public function setNbTimeSlots($nbTimeSlots)
     {
-        return count($this->getTimeSlots());
+        $this->nbTimeSlots = $nbTimeSlots;
+        return $this;
     }
+
+    public function getNbTimeSlots()
+    {
+        return $this->nbTimeSlots;
+    }
+
+    public function setTotalBooked($totalBooked)
+    {
+        $this->totalBooked = $totalBooked;
+        return $this;
+    }
+
+    public function getTotalBooked()
+    {
+        return $this->totalBooked;
+    }
+
 
     public function getNbBooked()
     {

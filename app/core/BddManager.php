@@ -28,4 +28,12 @@ abstract class BddManager
         return $this->connexion()->prepare($query);
     }
 
+    public function delete($object)
+    {
+        $query = "DELETE FROM ".$object->getTableName()." where ".$object->getPrimaryKey()." = :id";
+        $stmt = $this->prepare($query);
+        $stmt->bindValue(':id', $object->getId());
+        $stmt->execute();
+    }
+
 }

@@ -23,8 +23,8 @@
              <?= $planning->getName();?>
            </a>
          </td>
-         <td><?= $planning->nbTimeSlots();?></td>
-         <td><?= $planning->getNbBooked();?></td>
+         <td><?= $planning->getNbTimeSlots();?></td>
+         <td><?= $planning->getTotalBooked();?></td>
        </tr>
      <?php endforeach;?>
      </tbody>

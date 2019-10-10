@@ -10,12 +10,16 @@
 abstract class EntityConfiguration
 {
 
+    abstract public function getEntityName();
+
+    abstract public function getTableName();
+
+    abstract public function getPrimaryKey();
+
     public function __construct($datas = null)
     {
       if($datas) $this->hydrate($datas);
     }
-
-    abstract public function getEntityName();
 
     public function hydrate($datas)
     {
@@ -34,7 +38,6 @@ abstract class EntityConfiguration
           }
       }
     }
-
 
     public function save()
     {

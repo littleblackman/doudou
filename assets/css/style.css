@@ -21,6 +21,11 @@ nav a:hover { color: grey}
 #createPlanningButton { margin-top: 20px; float: right}
 
 /************ CALENDAR ********/
-.activeday { width: 14%; float: left}
-.activeday h6 { text-align: center}
+.activeday, .notactiveday { width: 14%; float: left}
+.activeday h6, .notactiveday h6 { text-align: center}
 .timeSlot { padding: 2px; border: 1px solid darkblue; text-align: center; cursor: pointer}
+.selected { background-color: #80cbc4}
+.booked { background-color: #1e88e5}
+
+.noSelectable { background-color: white; color: lightgrey; cursor: default;}
+#modal2-informations { color: darkblue}

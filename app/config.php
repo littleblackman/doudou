@@ -14,10 +14,16 @@ class MyConfiguration
         // start session
         session_start();
 
+        MyConfiguration::initParameters();
+
         // start autoload
         spl_autoload_register(array(__CLASS__, 'autoload'));
 
-        MyConfiguration::initParameters();
+        // load helper
+        function use_helper($helpername) {
+            include_once(HELPER.$helpername.'Helper.php');
+        }
+
 
     }
 
@@ -43,6 +49,8 @@ class MyConfiguration
         define('APP', ROOT.'app/');
         define('CORE', ROOT.'app/core/');
         define('SERVICE', ROOT.'service/');
+        define('HELPER', ROOT.'helper/');
+
 
         // set assets url
         define('ASSETS', HOST.'assets/');

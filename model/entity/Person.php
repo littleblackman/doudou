@@ -15,6 +15,16 @@ class Person extends EntityConfiguration
         return "Person";
     }
 
+    public function getTableName()
+    {
+        return "person";
+    }
+
+    public function getPrimaryKey()
+    {
+        return "person_id";
+    }
+
     public function setPersonId(Int $personId)
     {
         $this->personId = $personId;
@@ -45,7 +55,11 @@ class Person extends EntityConfiguration
 
     public function getLastname()
     {
-        return $this->$lastname;
+        return $this->lastname;
+    }
+
+    public function getFullname() {
+      return $this->getFirstname().' '.$this->getLastname();
     }
 
     public function setEmail(String $email)
@@ -57,6 +71,11 @@ class Person extends EntityConfiguration
     public function getEmail()
     {
         return $this->email;
+    }
+
+    public function getBookedPersons()
+    {
+
     }
 
 }

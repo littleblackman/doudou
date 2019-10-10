@@ -48,6 +48,13 @@ class View
         include_once (VIEW.'template/template.php');
     }
 
+    public function renderHtml($params = [])
+    {
+        extract($params);
+        $template = $this->template;
+        include_once(VIEW.$template.'.php');
+    }
+
     /**
      * redirect to the route
      * @param $route
@@ -57,5 +64,6 @@ class View
         header("Location: ".HOST.$route);
         exit;
     }
+
 
 }

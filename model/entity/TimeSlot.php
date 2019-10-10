@@ -7,12 +7,32 @@ class TimeSlot extends EntityConfiguration
   private $dateAvailable;
   private $timeStart;
   private $timeEnd;
-  private $isBooked;
+  private $isBooked = 0;
   private $planningId;
+  private $persons = [];
 
   public function getEntityName()
   {
       return "TimeSlot";
+  }
+
+  public function getTableName()
+  {
+      return "time_slot";
+  }
+
+  public function getPrimaryKey()
+  {
+      return "id_time_slot";
+  }
+
+  public function toArray()
+  {
+      $vars = get_object_vars($this);
+      $vars['dateAvailable'] = $this->getDateAvailable()->format('Y-m-d');
+      $vars['timeStart']     = $this->getTimeStart()->format('H:i');
+      $vars['timeEnd']       = $this->getTimeEnd()->format('H:i');
+      return $vars;
   }
 
   public function setIdTimeSlot(Int $idTimeSlot)
@@ -90,6 +110,21 @@ class TimeSlot extends EntityConfiguration
   public function getPlanningId()
   {
       return $this->planningId;
+  }
+
+  public function addPerson($person) {
+      $this->persons[] = $person;
+      return $this;
+  }
+
+  public function getPersons()
+  {
+      return $this->persons;
+  }
+
+  public function getIdGroup()
+  {
+    return $this->getDateAvailable()->format('Ymd').$this->getTimeStart()->format('H');
   }
 
 }

@@ -26,7 +26,20 @@ class Controller
         $myView->render($datas);
     }
 
+    public function renderJson($datas)
+    {
+        echo json_encode($datas);
+    }
+
     public function redirect($template) {
       $this->view->redirect($template);
+    }
+
+    public function renderHtml($template, $datas = [])
+    {
+        $datas['session'] = $this->session;
+        $myView = $this->view;
+        $myView->setTemplate($template);
+        $myView->renderHtml($datas);
     }
 }

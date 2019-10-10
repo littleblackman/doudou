@@ -40,8 +40,14 @@ class PlanningController extends Controller
   {
     $manager = new PlanningManager();
     $planning = $manager->find($request->get('id'));
-    $calendar = new CalendarService();
-    $this->render('planning/edit', ['planning' => $planning, 'calendar' => $calendar]);
+    $selecteds = [];
+    foreach($planning->getTimeSlots() as $timeSlot) {
+      $selecteds[$timeSlot->getIdGroup()] = $timeSlot;
+    }
+    if(!$firstDate = $planning->getTimeSlots()[0]->getDateAvailable()->format('Y-m-d')) $firstDate = null;
+    $calendar = new CalendarService($firstDate);
+    $mode = "calendarEdit.js";
+    $this->render('planning/edit', ['planning' => $planning, 'calendar' => $calendar, 'selecteds' => $selecteds, 'mode' => $mode]);
   }
 
   public function update($request)
@@ -52,11 +58,19 @@ class PlanningController extends Controller
       $this->redirect('modification-planning/'.$last_id);
   }
 
-  public function addTimeSlot($request)
+  public function navCalendar($request)
   {
-      $timeSlot = new TimeSlot($request->getParams());
-      //$timeSlot->save();
-      echo '<pre>'; print_r($timeSlot); exit;
+
+      $calendar  = new CalendarService($request->get('targetDate'));
+      $manager = new PlanningManager();
+      $planning = $manager->find($request->get('idPlanning'));
+      $selecteds = [];
+      foreach($planning->getTimeSlots() as $timeSlot) {
+        $selecteds[$timeSlot->getIdGroup()] = $timeSlot;
+      }
+      $mode = "calendar".$request->get('mode').".js";
+
+      $this->renderHtml('planning/_calendar', ['planning' => $planning, 'calendar' => $calendar, 'selecteds' => $selecteds, 'mode' => $mode]);
   }
 
 }
