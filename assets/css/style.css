@@ -29,3 +29,5 @@ nav a:hover { color: grey}
 
 .noSelectable { background-color: white; color: lightgrey; cursor: default;}
 #modal2-informations { color: darkblue}
+
+.clearBooking { font-size: 16px; float: right; color: #c2185b; cursor: pointer}

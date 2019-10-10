@@ -26,7 +26,16 @@ class TimeSlotManager extends BddManager
       $stmt->execute();
 
       $this->setBooked(1, $timeSlot->getId());
+  }
 
+  public function removePerson($timeSlot, $person) {
+      $query = "DELETE FROM booking WHERE
+              person_id = :person_id AND time_slot_id = :time_slot_id";
+      $stmt = $this->prepare($query);
+      $stmt->bindValue(':person_id', $person->getId());
+      $stmt->bindValue(':time_slot_id', $timeSlot->getId());
+      $stmt->execute();
+      $this->setBooked(0, $timeSlot->getId());
   }
 
   public function setBooked($is_booked, $id) {
@@ -38,6 +47,8 @@ class TimeSlotManager extends BddManager
       $stmt->bindValue(':id', $id);
       $stmt->execute();
   }
+
+
 
   public function save($object)
   {

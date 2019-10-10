@@ -117,6 +117,7 @@ class PlanningManager extends BddManager
         $stmt->bindValue(':id', $data['id_planning']);
         $stmt->execute();
 
+        $personBooked = [];
         if($data2 = $stmt->fetchAll(PDO::FETCH_ASSOC)) {
             foreach($data2 as $d) {
                 $person = new Person($d);

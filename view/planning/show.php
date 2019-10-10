@@ -24,16 +24,19 @@
                         <h5 style="color: lightgrey; font-weight: bold"><?= getDayName($title) ;?></h5>
                     <?php endif;?>
                     <?php ($timeSlot->getIsBooked() == 1) ? $class = "booked" : $class = "";?>
-                    <li class="<?= $class;?>">
+                    <li class="<?= $class;?>" id="li-<?= $timeSlot->getId();?>">
                       <?= $timeSlot->getDateAvailable()->format('d/m/Y');?>
                       - de <?= $timeSlot->getTimeStart()->format('H:i');?>
                        à <?= $timeSlot->getTimeEnd()->format('H:i');?>
                        &nbsp;
-                       <?php if($timeSlot->getPersons()):?>
-                            <?php foreach($timeSlot->getPersons() as $person):?>
-                                  <?php echo $person->getFullname().' - '.$person->getEmail();?>
-                            <?php endforeach;?>
-                       <?php endif;?>
+                       <span id="details-<?= $timeSlot->getId();?>">
+                           <?php if($timeSlot->getPersons()):?>
+                                <?php foreach($timeSlot->getPersons() as $person):?>
+                                      <?php echo $person->getFullname().' - '.$person->getEmail();?>
+                                <?php endforeach;?>
+                                <i class="material-icons clearBooking" id="<?= $timeSlot->getId().'-'.$person->getId();?>">clear</i>
+                           <?php endif;?>
+                      </span>
                      </li>
                <?php endforeach;?>
              </ul>
@@ -61,3 +64,32 @@
      </div>
    </div>
 </section>
+
+<script>
+  $('.clearBooking').click(function() {
+    let datas = $(this).attr('id');
+    let id_time_slot = datas.split('-')[0];
+    let person_id    = datas.split('-')[1];
+    let urlRemove = HOST+'removeBooking';
+
+    console.log(HOST);
+
+    $.ajax({
+        url : urlRemove,
+        type : 'POST',
+        data : 'id_time_slot=' + id_time_slot + '&person_id=' + person_id,
+        dataType : 'json',
+        success : function(result, statut){
+          let target = 'details-'+result.timeSlotId;
+          let liId   = 'li-'+result.timeSlotId;
+          let myLi   = document.getElementById(liId);
+          let mySpan = document.getElementById(target);
+          myLi.classList.remove("booked");
+          mySpan.innerHTML = "";
+
+
+       }
+    });
+
+  })
+</script>

@@ -37,4 +37,17 @@ class PersonManager extends BddManager
       return $person;
 
     }
+
+    public function find($id) {
+      $query = "SELECT * FROM person WHERE person_id = :id";
+      $stmt = $this->prepare($query);
+      $stmt->bindValue(':id', $id);
+      $stmt->execute();
+
+      $data = $stmt->fetch(PDO::FETCH_ASSOC);
+
+      $person = new Person($data);
+
+      return $person;
+    }
 }

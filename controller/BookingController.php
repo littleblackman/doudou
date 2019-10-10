@@ -37,4 +37,19 @@ class BookingController extends Controller
       $this->renderJson(['message' => 'Horaire réservé', 'id' => $id]);
 
   }
+
+  public function remove($request) {
+
+      $timeSlotManager = new TimeSlotManager();
+      $timeSlot = $timeSlotManager->find($request->get('id_time_slot'));
+
+      $personManager = new PersonManager();
+      $person = $personManager->find($request->get('person_id'));
+
+      $timeSlotManager->removePerson($timeSlot, $person);
+      $personManager->delete($person);
+
+      $this->renderJson(['timeSlotId' => $timeSlot->getId()]);
+
+  }
 }
