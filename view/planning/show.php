@@ -72,8 +72,6 @@
     let person_id    = datas.split('-')[1];
     let urlRemove = HOST+'removeBooking';
 
-    console.log(HOST);
-
     $.ajax({
         url : urlRemove,
         type : 'POST',

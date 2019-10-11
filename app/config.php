@@ -37,8 +37,17 @@ class MyConfiguration
 
         $parameters = parse_ini_file('config.ini');
 
+        if($parameters['mode'] == "dev") {
+            error_reporting(E_ALL);
+            ini_set('display_errors', 1);
+        }
+
         // set parameters
-        define('HOST', 'http://'.$host.'/'.$parameters['folder_app'].'/');
+        if($parameters['folder_app']) {
+          define('HOST', 'http://'.$host.'/'.$parameters['folder_app'].'/');
+        } else {
+          define('HOST', 'http://'.$host.'/');
+        }
         define('ROOT', $root.''.$parameters['folder_app'].'/');
 
         //set folders
