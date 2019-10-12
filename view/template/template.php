@@ -12,9 +12,8 @@
     <!-- Compiled and minified CSS -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-
     <!--- Font family --->
-    <link href="https://fonts.googleapis.com/css?family=Montserrat:400,500,700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Montserrat:400,500,700|Satisfy&display=swap" rel="stylesheet">
 
     <!-- Compiled and minified JavaScript -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
@@ -29,11 +28,17 @@
   <header>
       <nav>
           <div id="nav-left">
-            <a href="<?= HOST;?>">Home</a>
-            <a href="<?= HOST;?>">Planning</a>
+            <a href="<?= HOST;?>home">Home</a>
+            <a href="<?= HOST;?>dashboard">Planning</a>
+          </div>
+          <div>
+                <a href="<?= HOST;?>dashboard" alt="doudou dashboard">
+                  <img src="<?= IMG;?>logo-100x100.png" alt="doudou logo" width="50%"/>
+                </a>
           </div>
           <div id="nav-right">
-            Hello <b><?= $session->getUser()->getFirstname();?></b>
+            <b><?= $session->getUser()->getFirstname();?></b>
+            <a href="<?= HOST;?>logout">Déconnexion</a>
           </div>
 
       </nav>

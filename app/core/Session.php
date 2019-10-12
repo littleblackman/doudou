@@ -33,6 +33,12 @@ class Session
         return $_SESSION['role'];
     }
 
+    public function getAuth()
+    {
+        if(!isset($_SESSION['auth'])) return null;
+        return $_SESSION['auth'];
+    }
+
     public function getUser()
     {
       return $this->user;

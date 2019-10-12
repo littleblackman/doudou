@@ -14,7 +14,7 @@
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 
     <!--- Font family --->
-    <link href="https://fonts.googleapis.com/css?family=Montserrat:400,500,700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Montserrat:400,500,700|Satisfy&display=swap" rel="stylesheet">
 
     <!-- Compiled and minified JavaScript -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
@@ -31,8 +31,13 @@
           <div id="nav-left">
 
           </div>
+          <div>
+                <a href="<?= HOST;?>home" alt="doudou home">
+                  <img src="<?= IMG;?>logo-100x100.png" alt="doudou logo" width="50%"/>
+                </a>
+          </div>
           <div id="nav-right">
-            Hello guys
+            <a href="<?= HOST;?>login">Connexion</a>
           </div>
 
       </nav>

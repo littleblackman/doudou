@@ -79,7 +79,7 @@ class MyConfiguration
         define('ASSETS', HOST.'assets/');
         define('JS', ASSETS.'js/');
         define('CSS', ASSETS.'css/');
-        define('IMG', ASSETS.'image/');
+        define('IMG', ASSETS.'img/');
 
         // set bdd
         define('DB_LOGIN', $parameters['db_login']);

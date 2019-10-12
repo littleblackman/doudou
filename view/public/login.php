@@ -1,5 +1,5 @@
-<div style="width: 80%; margin: 0 auto">
-      <h1>Welcome<br/>doudouKiller</h1>
+<div id="loginPage" style="">
+      <h1>Welcome doudou liker</h1>
       <div class="row" style="text-align: center">
           <form action = "<?= HOST;?>signin" method="POST" class="col s12">
             <div class="row">

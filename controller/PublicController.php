@@ -14,6 +14,7 @@ class PublicController extends Controller
 
   public function login()
   {
+    if($this->session->getAuth() == 1) $this->redirect('dashboard');
     $this->setBaseTemplate('public');
     $this->render('public/login');
   }
