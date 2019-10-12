@@ -27,6 +27,16 @@ class View
         return $this;
     }
 
+    public function setBaseTemplate($baseTemplate)
+    {
+        $this->baseTemplate = $baseTemplate;
+    }
+
+    public function getBaseTemplate()
+    {
+        return $this->baseTemplate;
+    }
+
     /**
      * render the template
      * @param array $params
@@ -37,6 +47,8 @@ class View
         $template = $this->template;
         ob_start();
 
+        if(MODE_ENV == 'dev') include(APP.'pages/_DEV_BAR.php');
+
         if($this->App == 1)
         {
             include(APP.'pages/'.$template.'.php');
@@ -45,7 +57,7 @@ class View
             include(VIEW.$template.'.php');
         }
         $contentPage = ob_get_clean();
-        include_once (VIEW.'template/template.php');
+        include_once (VIEW.'template/'.$this->getBaseTemplate().'.php');
     }
 
     public function renderHtml($params = [])

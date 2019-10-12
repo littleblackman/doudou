@@ -28,10 +28,16 @@ class Routeur
               $vars = [];
             }
 
+            if(isset($routes[$route]['security'])) {
+              $role = $routes[$route]['security'];
+            } else {
+              $role = "VISITOR";
+            }
+
             $params = $this->getParams($url, $vars);
 
         } else {
-            $controller = "ErrorPage";
+            $controller = "ErrorPageController";
             $method     = "show404";
             $params     = null;
 
@@ -42,8 +48,10 @@ class Routeur
         $request->setParams($params);
         $request->setController($controller);
         $request->setMethod($method);
+        $request->setRole($role);
 
         $this->request = $request;
+
     }
 
 
@@ -75,19 +83,20 @@ class Routeur
                 $params[$key] = $val;
             }
         }
-
         return $params;
-
     }
+
 
     public function renderController()
     {
         $request = $this->request;
+
+        // rendering
         $controller = $request->getController();
         $method     = $request->getMethod();
 
-        $currentController = new $controller();
-        $currentController->$method($request);
+        $currentController = new $controller($request);
+        $currentController->$method();
 
     }
 }

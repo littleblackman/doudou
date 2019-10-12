@@ -10,18 +10,54 @@ class Controller
 
     private $view;
     public $session;
+    public $request;
+    private $roles;
+    private $baseTemplate;
 
-    public function __construct()
+    public function __construct($request)
     {
         $this->view = new View();
         $this->session = new Session();
+        $this->request = $request;
+        $this->roles = explode(',', ROLE_PRIORITY);
+        $this->baseTemplate = BASE_TEMPLATE;
+
+        if(!$this->checkIfIsAuthorized()) {
+          $this->redirect("login");
+        }
     }
 
+    public function getRoles()
+    {
+        return $this->roles;
+    }
+
+    public function checkIfIsAuthorized()
+    {
+        $r_session = $this->session->getRole();
+        $r_request = $this->request->getRole();
+
+        $roles = array_flip($this->roles);
+
+        if($roles[$r_session] >= $roles[$r_request]) return true;
+        return false;
+    }
+
+    public function setBaseTemplate($baseTemplate)
+    {
+        $this->baseTemplate = $baseTemplate;
+    }
+
+    public function getBaseTemplate()
+    {
+        return $this->baseTemplate;
+    }
 
     public function render($template, $datas = [])
     {
         $datas['session'] = $this->session;
         $myView = $this->view;
+        $myView->setBaseTemplate($this->getBaseTemplate());
         $myView->setTemplate($template);
         $myView->render($datas);
     }

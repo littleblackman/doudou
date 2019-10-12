@@ -5,10 +5,10 @@
  */
 class BookingController extends Controller
 {
-  public function show($request) {
+  public function show() {
 
       $manager = new PlanningManager();
-      $planning = $manager->findBySlug($request->get('slug'));
+      $planning = $manager->findBySlug($this->request->get('slug'));
 
       $selecteds = [];
       foreach($planning->getTimeSlots() as $timeSlot) {
@@ -19,16 +19,18 @@ class BookingController extends Controller
 
       $mode = "calendarShow.js";
 
+      $this->setBaseTemplate('public');
+
       $this->render('booking/show', ['planning' => $planning, 'calendar' => $calendar, 'selecteds' => $selecteds, 'mode' => $mode]);
   }
 
-  public function bookTimeSlot($request) {
+  public function bookTimeSlot() {
 
       $timeSlotManager = new TimeSlotManager();
       $personManager   = new PersonManager();
 
-      $timeSlot = $timeSlotManager->find($request->get('idTimeSlot'));
-      $person   = $personManager->createPerson($request->get('bookingFirstname'), $request->get('bookingLastname'), $request->get('bookingEmail'));
+      $timeSlot = $timeSlotManager->find($this->request->get('idTimeSlot'));
+      $person   = $personManager->createPerson($this->request->get('bookingFirstname'), $this->request->get('bookingLastname'), $this->request->get('bookingEmail'));
 
       $timeSlotManager->joinPerson($timeSlot, $person);
 
@@ -38,13 +40,13 @@ class BookingController extends Controller
 
   }
 
-  public function remove($request) {
+  public function remove() {
 
       $timeSlotManager = new TimeSlotManager();
-      $timeSlot = $timeSlotManager->find($request->get('id_time_slot'));
+      $timeSlot = $timeSlotManager->find($this->request->get('id_time_slot'));
 
       $personManager = new PersonManager();
-      $person = $personManager->find($request->get('person_id'));
+      $person = $personManager->find($this->request->get('person_id'));
 
       $timeSlotManager->removePerson($timeSlot, $person);
       $personManager->delete($person);

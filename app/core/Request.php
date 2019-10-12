@@ -12,6 +12,7 @@ class Request
     private $params;
     private $controller;
     private $method;
+    private $role;
 
     /**
      * @return mixed
@@ -65,6 +66,14 @@ class Request
         return $this;
     }
 
+    public function setRole($role) {
+        $this->role = $role;
+        return $this;
+    }
+
+    public function getRole() {
+        return $this->role;
+    }
 
     /**
      * @return mixed

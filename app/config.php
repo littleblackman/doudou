@@ -11,10 +11,22 @@ class MyConfiguration
      */
     public static function start()
     {
+
+        MyConfiguration::initParameters();
+
         // start session
         session_start();
 
-        MyConfiguration::initParameters();
+        // set mod_env configuration
+        if( MODE_ENV == "dev" ) {
+            ini_set('display_errors', 1);
+            ini_set('display_startup_errors', 1);
+            error_reporting(E_ALL);
+        } else {
+            ini_set('display_errors', 0);
+            ini_set('log_errors', 1);
+            error_reporting(E_ERROR | E_WARNING | E_PARSE);
+        }
 
         // start autoload
         spl_autoload_register(array(__CLASS__, 'autoload'));
@@ -23,7 +35,6 @@ class MyConfiguration
         function use_helper($helpername) {
             include_once(HELPER.$helpername.'Helper.php');
         }
-
 
     }
 
@@ -37,10 +48,14 @@ class MyConfiguration
 
         $parameters = parse_ini_file('config.ini');
 
-        if($parameters['mode'] == "dev") {
-            error_reporting(E_ALL);
-            ini_set('display_errors', 1);
-        }
+        // set env
+        define('MODE_ENV', $parameters['mode']);
+
+        // set priority
+        define('ROLE_PRIORITY', $parameters['role_priority']);
+
+        // $base_template
+        define('BASE_TEMPLATE', $parameters['base_template']);
 
         // set parameters
         if($parameters['folder_app']) {
@@ -59,7 +74,6 @@ class MyConfiguration
         define('CORE', ROOT.'app/core/');
         define('SERVICE', ROOT.'service/');
         define('HELPER', ROOT.'helper/');
-
 
         // set assets url
         define('ASSETS', HOST.'assets/');

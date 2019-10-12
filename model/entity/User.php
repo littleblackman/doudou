@@ -8,6 +8,7 @@ class User extends EntityConfiguration
     private $login;
     private $password;
     private $person;
+    private $role;
 
     public function getEntityName()
     {
@@ -66,6 +67,17 @@ class User extends EntityConfiguration
     public function getPerson()
     {
         return $this->person;
+    }
+
+    public function setRole($role)
+    {
+        $this->role = $role;
+        return $this;
+    }
+
+    public function getRole()
+    {
+        return $this->role;
     }
 
     public function getFirstname()
