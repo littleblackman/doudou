@@ -22,9 +22,9 @@ class MailerService
     public function __construct()
     {
         $this->setEncoding("utf-8");
-        $this->setReply("DEFAULT_REPLY");
-        $this->setFromEmail('DEFAULT_SENDER');
-        $this->setFromName('DEFAULT_SENDER_NAME');
+        $this->setReply(DEFAULT_REPLY);
+        $this->setFromEmail(DEFAULT_SENDER);
+        $this->setFromName(DEFAULT_SENDER_NAME);
     }
 
     /**
