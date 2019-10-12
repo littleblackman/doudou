@@ -80,6 +80,11 @@ class User extends EntityConfiguration
         return $this->role;
     }
 
+    public function getFullname()
+    {
+        return $this->getPerson()->getFullname();
+    }
+
     public function getFirstname()
     {
         return $this->getPerson()->getFirstname();

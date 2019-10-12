@@ -1,6 +1,12 @@
 <?php
 
-
+/**
+ * DateExtend Class
+ * Used to manager calendar & date
+ *
+ *
+ * @author Sandy Razafitrimo <sandy@etsik.com>
+ */
 class DateExtendService {
 
 

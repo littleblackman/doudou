@@ -17,7 +17,9 @@ class Controller
     public function __construct($request)
     {
         $this->view = new View();
-        $this->session = new Session();
+        $session = new Session();
+        $session->setRequest($request);
+        $this->session = $session;
         $this->request = $request;
         $this->roles = explode(',', ROLE_PRIORITY);
         $this->baseTemplate = BASE_TEMPLATE;
@@ -51,6 +53,12 @@ class Controller
     public function getBaseTemplate()
     {
         return $this->baseTemplate;
+    }
+
+    public function getRenderTemplate($template, $datas = []) {
+        $myView = $this->view;
+        $myView->setTemplate($template);
+        return $myView->getRenderTemplate($datas);
     }
 
     public function render($template, $datas = [])

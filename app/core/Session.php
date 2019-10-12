@@ -39,6 +39,17 @@ class Session
         return $_SESSION['auth'];
     }
 
+    public function setRequest($request)
+    {
+        $this->request = $request;
+        return $this;
+    }
+
+    public function getRequest()
+    {
+        return $this->request;
+    }
+
     public function getUser()
     {
       return $this->user;

@@ -87,6 +87,13 @@ class MyConfiguration
         define('DB_NAME', $parameters['db_name']);
         define('DB_HOST', $parameters['db_host']);
 
+
+        // set from_email
+        define('DEFAULT_EMAIL', $parameters['default_email']);
+        define('DEFAULT_REPLY', $parameters['default_reply']);
+        define('DEFAULT_SENDER', $parameters['default_sender']);
+        define('DEFAULT_SENDER_NAME', $parameters['default_sender_name']);
+
     }
 
     /**

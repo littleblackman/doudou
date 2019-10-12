@@ -41,6 +41,7 @@ class Routeur
             $method     = "show404";
             $params     = null;
 
+
         }
 
         $request = new Request();
@@ -49,6 +50,7 @@ class Routeur
         $request->setController($controller);
         $request->setMethod($method);
         $request->setRole($role);
+        $request->setUrl($url);
 
         $this->request = $request;
 

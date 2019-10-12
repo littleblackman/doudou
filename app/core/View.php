@@ -37,6 +37,24 @@ class View
         return $this->baseTemplate;
     }
 
+    public function getRenderTemplate($params)
+    {
+         extract($params);
+         $template = $this->template;
+         ob_start();
+
+         if($this->App == 1)
+         {
+             include(APP.'pages/'.$template.'.php');
+
+         } else {
+             include(VIEW.$template.'.php');
+         }
+         $contentPage = ob_get_clean();
+
+         return $contentPage;
+    }
+
     /**
      * render the template
      * @param array $params

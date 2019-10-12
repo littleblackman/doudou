@@ -1,8 +1,12 @@
 <?php
 
-
-
-
+/**
+ * DateExtend Class
+ * Used to manager calendar
+ *
+ *
+ * @author Sandy Razafitrimo <sandy@etsik.com>
+ */
 class CalendarService extends DateExtendService
 {
 

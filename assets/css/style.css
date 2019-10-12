@@ -1,6 +1,21 @@
 /*** COMMON ****/
-body { font-family: 'Montserrat', sans-serif;}
-#mainContent { margin: 0 auto; width: 90%}
+body {
+  font-family: 'Montserrat', sans-serif;
+  min-height: 100%;
+  margin: 0;
+  padding: 0;
+  position: relative;
+}
+
+html {
+  height: 100%;
+}
+
+footer {position: absolute; bottom: 0; left: 0; right: 0; }
+
+#mainContent {
+  margin: 0 auto; width: 90%; margin-bottom: 160px
+}
 h1 { font-size: 2em; font-weight: 700}
 h2 { font-size: 1.8em; font-weight: 700}
 h3 { font-size: 1.6em; font-weight: 500}
@@ -15,10 +30,10 @@ h6 { font-size: 1em; font-weight: 400}
 
 
 /*******  HOME ************/
-#frontInformation h1 { font-family: 'Satisfy'; font-size: 3em; text-align: center}
-#frontInformation img { text-align: center;}
-#frontInformation { display: flex; flex-wrap: wrap; justify-content: space-around;}
-#homepage p { font-size: 1.8em; text-align: center; margin-top: 80px;}
+#homepage { display: flex; flex-wrap: wrap; justify-content: space-around; margin-top: 30px}
+#homepage img { text-align: center;}
+#homepage h1 { font-size: 2.8em; }
+#homepage p { font-size: 1.8em; text-align: left;}
 
 /***** TEMPLATE ************/
 nav {display: flex; flex-wrap: wrap; justify-content: space-between;}

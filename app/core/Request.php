@@ -13,6 +13,7 @@ class Request
     private $controller;
     private $method;
     private $role;
+    private $url;
 
     /**
      * @return mixed
@@ -73,6 +74,22 @@ class Request
 
     public function getRole() {
         return $this->role;
+    }
+
+    public function getAbsoluteUrl()
+    {
+      return HOST.$this->getUrl();
+    }
+
+    public function getUrl()
+    {
+        return $this->url;
+    }
+
+    public function setUrl($url)
+    {
+        $this->url = $url;
+        return $this;
     }
 
     /**

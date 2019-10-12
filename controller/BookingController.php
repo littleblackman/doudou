@@ -28,11 +28,16 @@ class BookingController extends Controller
 
       $timeSlotManager = new TimeSlotManager();
       $personManager   = new PersonManager();
+      $notification    = new NotificationService();
 
       $timeSlot = $timeSlotManager->find($this->request->get('idTimeSlot'));
       $person   = $personManager->createPerson($this->request->get('bookingFirstname'), $this->request->get('bookingLastname'), $this->request->get('bookingEmail'));
 
       $timeSlotManager->joinPerson($timeSlot, $person);
+
+      $html = $this->getRenderTemplate('Notification/confirmationMentorat', ['timeSlot' => $timeSlot, 'person' => $person, 'user' => $this->session->getUser()]);
+
+      $notification->confirmationMentorat($timeSlot, $person, $html);
 
       $id = $timeSlot->getDateAvailable()->format('Y-m-d').'.'.$timeSlot->getTimeStart()->format('H:i').'.'.$timeSlot->getPlanningId();
 

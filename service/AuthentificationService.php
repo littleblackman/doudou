@@ -1,6 +1,12 @@
 <?php
 
-
+/**
+ * Authentification Class
+ * Used to auth the user
+ *
+ *
+ * @author Sandy Razafitrimo <sandy@etsik.com>
+ */
 class AuthentificationService
 {
 
@@ -13,8 +19,6 @@ class AuthentificationService
 
         $session = new Session();
         $session->initUserSession($user);
-
-
     }
 
 
