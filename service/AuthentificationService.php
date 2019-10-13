@@ -10,15 +10,22 @@
 class AuthentificationService
 {
 
+    private $session;
+    private $userManager;
+
+    public function __construct()
+    {
+      $this->session = new Session();
+      $this->userManager = new UserManager();
+    }
+
     public function auth($login, $password)
     {
-        $manager = new UserManager();
-        $user = $manager->findByLogin($login);
+        $user = $this->userManager->findByLogin($login);
 
         if(!password_verify($password, $user->getPassword())) $this->redirect('login');
 
-        $session = new Session();
-        $session->initUserSession($user);
+        $this->session->initUserSession($user);
     }
 
 
