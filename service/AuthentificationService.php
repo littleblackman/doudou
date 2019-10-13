@@ -13,9 +13,9 @@ class AuthentificationService
     private $session;
     private $userManager;
 
-    public function __construct()
+    public function __construct($session)
     {
-      $this->session = new Session();
+      $this->session = $session;
       $this->userManager = new UserManager();
     }
 

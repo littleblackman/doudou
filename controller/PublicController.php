@@ -20,7 +20,7 @@ class PublicController extends Controller
   }
 
   public function signin() {
-      $authService = new AuthentificationService();
+      $authService = new AuthentificationService($this->session);
       $authService->auth($this->request->get('login'), $this->request->get('password'));
       $this->redirect('dashboard');
   }

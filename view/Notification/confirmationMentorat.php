@@ -1,6 +1,6 @@
 <h2>Confirmation de rendez-vous Mentorat OC</h2>
 
-Hello, <? $person->getFullname();?><br/>
+Hello <?= $person->getFullname();?>,<br/>
 
 voici une confirmation du rendez-vous avec <?= $user->getFullname();?><br/>
 <br/>
