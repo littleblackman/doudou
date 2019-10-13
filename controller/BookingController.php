@@ -38,7 +38,7 @@ class BookingController extends Controller
 
       $timeSlotManager->joinPerson($timeSlot, $person);
 
-      $html = $this->getRenderTemplate('Notification/confirmationMentorat', ['timeSlot' => $timeSlot, 'person' => $person, 'user' => $planning->getUser(), 'planning' => $planning]);
+      $html = $this->getRenderTemplate('notification/confirmationMentorat', ['timeSlot' => $timeSlot, 'person' => $person, 'user' => $planning->getUser(), 'planning' => $planning]);
 
       $notification->confirmationMentorat($timeSlot, $person, $html, $planning->getUser());
 

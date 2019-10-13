@@ -13,7 +13,7 @@ class NotificationService
         $this->mailerService = new MailerService();
     }
 
-    public function confirmationMentorat($timeSlot, $person, $message, $own)
+    public function confirmationMentorat($timeSlot, $person, $message, $owner)
     {
           // send to r
           $this->mailerService->setTitle('DOUDOU - Confirmation de Mentorat');
@@ -23,7 +23,7 @@ class NotificationService
 
           // send copy to defaut email
           $this->mailerService->setTitle('DOUDOU - confirmation de Mentorat');
-          $this->mailerService->setAdd($owner->getUser()->getEmail());
+          $this->mailerService->setAdd($owner->getEmail());
           $this->mailerService->setMessage($message);
           $this->mailerService->sendMail();
     }
