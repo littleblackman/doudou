@@ -1,5 +1,5 @@
 <div id="homepage">
-      <img src="<?= IMG;?>logo/doudou.png" alt="doudou pour vos rendez-vous" style="width: 30%"/>
+      <img src="<?= IMG;?>logo/doudou-366x600.png" alt="doudou pour vos rendez-vous"/>
       <div>
           <h1>
             doudou,<br/>

@@ -84,11 +84,5 @@
 </div>
 
 
-
-
-
-
-
-
 <input type="hidden" id="idPlanningJs" value="<?= $planning->getId();?>"/>
 <script src="<?= JS.$mode;?>"></script>

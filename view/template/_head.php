@@ -17,7 +17,7 @@
     <meta property="og:title" content="Doudou, le planning en ligne" />
     <meta property="og:type" content="application" />
     <meta property="og:url" content="<?= $session->getRequest()->getAbsoluteUrl();?>" />
-    <meta property="og:image" content="<?= IMG;?>logo/doudou.png" />
+    <meta property="og:image" content="<?= IMG;?>logo/icecoffee.png" />
 
     <!-- jquery -->
     <script src="https://code.jquery.com/jquery-3.4.1.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
@@ -32,6 +32,8 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
 
     <link rel="stylesheet" href="<?= CSS;?>style.css"/>
+    <link rel="stylesheet" href="<?= CSS;?>media-queries.css"/>
+
 
     <script>
       var HOST = "<?= HOST;?>";

@@ -31,13 +31,13 @@ h6 { font-size: 1em; font-weight: 400}
 
 /*******  HOME ************/
 #homepage { display: flex; flex-wrap: wrap; justify-content: space-around; margin-top: 30px}
-#homepage img { text-align: center;}
+#homepage img { text-align: center; max-width: 100%; height: auto;}
 #homepage h1 { font-size: 2.8em; }
 #homepage p { font-size: 1.8em; text-align: left;}
 
 /***** TEMPLATE ************/
-nav {display: flex; flex-wrap: wrap; justify-content: space-between;}
-nav a { margin-right: 30px;}
+nav {display: flex; flex-wrap: wrap; justify-content: space-between; padding: 0 20px}
+nav a { margin-right: 10px;}
 nav a:hover { color: black}
 
 #createPlanningButton { margin-top: 20px; float: right}
