@@ -40,7 +40,7 @@ class BookingController extends Controller
 
       $html = $this->getRenderTemplate('Notification/confirmationMentorat', ['timeSlot' => $timeSlot, 'person' => $person, 'user' => $planning->getUser(), 'planning' => $planning]);
 
-      $notification->confirmationMentorat($timeSlot, $person, $html);
+      $notification->confirmationMentorat($timeSlot, $person, $html, $planning->getUser());
 
       $id = $timeSlot->getDateAvailable()->format('Y-m-d').'.'.$timeSlot->getTimeStart()->format('H:i').'.'.$timeSlot->getPlanningId();
 
