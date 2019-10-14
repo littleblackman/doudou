@@ -52,7 +52,7 @@
   </div>
 
   <!-- Modal show -->
-  <div id="modal2" class="modal" style="top: 0; position: absolute">
+  <div id="modal2" class="modal" style="top: 0; position: absolute; display: none">
     <div class="modal-content">
       <h4 style="text-align: center">Réserver une plage horaire<br/><span id="modal2-informations"></span></h4>
       <div class="row">

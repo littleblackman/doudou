@@ -1,5 +1,5 @@
 <?php use_helper('date');?>
-<section>
+<section style="position: relative">
 
   <div id="createPlanningButton">
     <a href="<?=HOST;?>creation-planning" class="btn-floating btn-large waves-effect waves-light red lighten-1" title="créer un planning"><i class="material-icons">add</i></a>
@@ -25,15 +25,19 @@
                     <?php endif;?>
                     <?php ($timeSlot->getIsBooked() == 1) ? $class = "booked" : $class = "";?>
                     <li class="<?= $class;?>" id="li-<?= $timeSlot->getId();?>">
-                      <?= $timeSlot->getDateAvailable()->format('d/m/Y');?>
-                      - de <?= $timeSlot->getTimeStart()->format('H:i');?>
-                       à <?= $timeSlot->getTimeEnd()->format('H:i');?>
+                      <span id="li-info-<?= $timeSlot->getId();?>">
+                          <?= $timeSlot->getDateAvailable()->format('d/m/Y');?>
+                          - de <?= $timeSlot->getTimeStart()->format('H:i');?>
+                           à <?= $timeSlot->getTimeEnd()->format('H:i');?>
+                      </span>
                        &nbsp;
                        <span id="details-<?= $timeSlot->getId();?>">
                            <?php if($timeSlot->getPersons()):?>
-                                <?php foreach($timeSlot->getPersons() as $person):?>
-                                      <?php echo $person->getFullname().' - '.$person->getEmail();?>
-                                <?php endforeach;?>
+                                <span id="detailsName-<?= $timeSlot->getId();?>">
+                                    <?php foreach($timeSlot->getPersons() as $person):?>
+                                          <?php echo $person->getFullname().' - '.$person->getEmail();?>
+                                    <?php endforeach;?>
+                                </span>
                                 <i class="material-icons clearBooking" id="<?= $timeSlot->getId().'-'.$person->getId();?>">clear</i>
                            <?php endif;?>
                       </span>
@@ -63,31 +67,34 @@
        </div>
      </div>
    </div>
+
 </section>
 
-<script>
-  $('.clearBooking').click(function() {
-    let datas = $(this).attr('id');
-    let id_time_slot = datas.split('-')[0];
-    let person_id    = datas.split('-')[1];
-    let urlRemove = HOST+'removeBooking';
+<!-- Modal show -->
+<div id="modal2" class="modal" style="top: 0; position: absolute; display: none; margin-top: 30%; background-color: white">
+  <div class="modal-content">
+          <h4 style="text-align: center">Suppression de rendez-vous<br/></h4>
+          <div class="row">
+                <p>
+                  Vous allez supprimer le rendez-vous de : <br/><span id="deleteName"></span>
+                  <br/>
+                  <span id="deleteDate"></span>
+                </p>
+                <p>
+                  Voulez-vous continuer ?
+                </p>
+          </div>
+  </div>
 
-    $.ajax({
-        url : urlRemove,
-        type : 'POST',
-        data : 'id_time_slot=' + id_time_slot + '&person_id=' + person_id,
-        dataType : 'json',
-        success : function(result, statut){
-          let target = 'details-'+result.timeSlotId;
-          let liId   = 'li-'+result.timeSlotId;
-          let myLi   = document.getElementById(liId);
-          let mySpan = document.getElementById(target);
-          myLi.classList.remove("booked");
-          mySpan.innerHTML = "";
+  <input type="hidden" id="deleteIdTimeSlot"/>
+  <input type="hidden" id="deletePersonId"/>
+
+  <div class="modal-footer">
+    <button class="btn waves-effect red darken-3 closeModalButton2">ANNULER</button>
+    <button class="btn waves-effect waves-light closeModalButton2" id="deleteBooking">SUPPRIMER</button>
+  </div>
+</div>
 
 
-       }
-    });
 
-  })
-</script>
+<script src="<?= JS?>show.js"></script>
