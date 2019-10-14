@@ -2,8 +2,6 @@ $( document ).ready(function() {
 
       $('.clearBooking').click(function() {
 
-      console.log('hello');
-
         let datas = $(this).attr('id');
         let id_time_slot = datas.split('-')[0];
         let person_id    = datas.split('-')[1];

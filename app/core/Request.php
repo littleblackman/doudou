@@ -105,6 +105,7 @@ class Request
      */
     public function setParams($params)
     {
+        $params = $this->secure($params);
         $this->params = $params;
     }
 
@@ -112,6 +113,14 @@ class Request
     {
         if(!isset($this->params[$param])) return null;
         return $this->params[$param];
+    }
+
+    public function secure($params) {
+      $datas = [];
+      foreach($params as $key => $value) {
+          $datas[$key] = htmlspecialchars($value);
+      }
+      return $datas;
     }
 
 
