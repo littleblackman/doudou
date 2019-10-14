@@ -1,8 +1,6 @@
 $( document ).ready(function() {
 
-
       $('.clearBooking').click(function() {
-
 
       console.log('hello');
 

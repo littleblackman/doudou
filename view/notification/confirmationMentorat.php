@@ -1,7 +1,7 @@
 <?php use_helper('date');?>
 <div style="background-color: #ee6e73; color: white; padding: 10px 30px; display: flex; justify-content: space-between">
+  <!--<img class="imgEmail" src="<?php echo IMG;?>logo/icecoffee-26x54.png" alt="doudou logo"/>-->
   <h2>Confirmation de rendez-vous Doudou</h2>
-  <img src="<?= IMG;?>logo/icecoffee-26x54.png" alt="doudou logo"/>
 </div>
 <div style="padding: 30px">
   <h3 style="padding-bottom: 0px; margin-bottom: 0px"><?= $planning->getName();?></h3>
@@ -28,9 +28,10 @@
               Ajouter à votre Agenda Google
             </a>
       </div>
-      <img src="<?= IMG;?>logo/doudou-240x393.png" alt="doudou pour vos rendez-vous"/>
+      <!---
+      <img class="imgEmail" src="<?php echo IMG;?>logo/doudou-240x393.png" alt="doudou pour vos rendez-vous"/>-->
   </div>
 
-  <br/><br/>
+  <br/>
   Email envoyé depuis l'application <a href="mydoudou.icu" alt="doudou l'application qui gère vos rendez-vous">Doudou</a>
 </div>
