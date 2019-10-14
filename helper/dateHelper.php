@@ -1,12 +1,18 @@
 <?php
 
 $GLOBALS['dayname_fr'] = array('', 'Lundi', 'Mardi', 'Mercredi', 'Jeudi', 'Vendredi', 'Samedi', 'Dimanche');
+$GLOBALS['monthname_fr'] = array('', 'Janvier', 'Février', 'Mars', 'Avril', 'Mai', 'Juin', 'Juillet', 'Août', 'Septembre', 'Octobre', 'Novembre', 'Décembre');
 
 
 function getDayName($i)
 {
     $datas = $GLOBALS['dayname_fr'];
     return $datas[$i];
+}
+
+function getMonthName($i) {
+  $datas = $GLOBALS['monthname_fr'];
+  return $datas[$i];
 }
 
 /**

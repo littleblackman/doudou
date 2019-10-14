@@ -1,3 +1,4 @@
+<?php use_helper('date');?>
 <span class="navCalendar" id="nav.<?= $calendar->getLessNday(7);?>" style="cursor: pointer">
   <i class="material-icons">navigate_before</i>
 </span>
@@ -6,7 +7,7 @@
 </span>
 
 <div style="position: relative">
-  <h4 style="text-align: center;"><?= $calendar->getObjectDate()->format('F');?></h4>
+  <h4 style="text-align: center;"><?= getMonthName($calendar->getObjectDate()->format('n'));?></h4>
 
   <?php foreach($calendar->getWeekValues() as $day):?>
   <div class="<?= $day['class'];?>">

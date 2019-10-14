@@ -11,9 +11,9 @@
         <div class="col l4 offset-l2 s12">
           <h5 class="white-text">Réseaux Sociaux</h5>
           <ul>
-            <li><a class="grey-text text-lighten-3" href="www.etsik.com">etsik</a></li>
-            <li><a class="grey-text text-lighten-3" href="https://www.facebook.com/etsikDigital/">Facebook</a></li>
-            <li><a class="grey-text text-lighten-3" href="https://www.instagram.com/sandyetsik/">Instagram</a></li>
+            <li><a class="grey-text text-lighten-3" target="_blank" href="http://www.etsik.com">etsik</a></li>
+            <li><a class="grey-text text-lighten-3" target="_blank" href="https://www.facebook.com/etsikDigital/">Facebook</a></li>
+            <li><a class="grey-text text-lighten-3" target="_blank" href="https://www.instagram.com/sandyetsik/">Instagram</a></li>
           </ul>
         </div>
       </div>
@@ -21,7 +21,7 @@
     <div class="footer-copyright">
       <div class="container">
       © 2019 copyright etsik
-      <a class="grey-text text-lighten-4 right" href="www.littleblackman.me">le site de litteblackman</a>
+      <a class="grey-text text-lighten-4 right" target="_blank" href="www.littleblackman.me">le site de litteblackman</a>
       </div>
     </div>
   </footer>

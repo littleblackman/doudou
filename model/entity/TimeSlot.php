@@ -122,6 +122,26 @@ class TimeSlot extends EntityConfiguration
       return $this->persons;
   }
 
+  public function getCreateEventUrl()
+  {
+    $base_url = "https://www.google.com/calendar/render?action=TEMPLATE";
+    $title = "rendez-vous%20doudou";
+
+    $year  = $this->getDateAvailable()->format('Ymd');
+    $start = $year.'T'.$this->getTimeStart()->format('Hi').'00Z';
+    $end   = $year.'T'.$this->getTimeEnd()->format('Hi').'00Z';
+    $dates = $start.'/'.$end;
+
+    $details="Rendez-vous%20doudou";
+
+    $location = "paris,%20france";
+
+    $url = $base_url.'&text='.$title.'&dates='.$dates.'&ctz=Europe/Paris&details='.$details.'&location='.$location;
+
+
+    return $url;
+  }
+
   public function getIdGroup()
   {
     return $this->getDateAvailable()->format('Ymd').$this->getTimeStart()->format('H');
