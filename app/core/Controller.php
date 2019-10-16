@@ -16,7 +16,10 @@ class Controller
 
     public function __construct($request)
     {
+        // create view
         $this->view = new View();
+
+        // create session
         $session = new Session();
         $session->setRequest($request);
         $this->session = $session;

@@ -1,5 +1,6 @@
 <?php include('_head.php');?>
 <body>
+  <?php include('_flashMessage.php');?>
   <header>
       <nav>
           <div id="nav-left">

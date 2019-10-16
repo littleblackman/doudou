@@ -23,9 +23,11 @@ class AuthentificationService
     {
         $user = $this->userManager->findByLogin($login);
 
-        if(!password_verify($password, $user->getPassword())) $this->redirect('login');
+        if(!password_verify($password, $user->getPassword())) return null;
 
         $this->session->initUserSession($user);
+
+        return true;
     }
 
 

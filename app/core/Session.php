@@ -5,9 +5,12 @@ class Session
 {
 
     private $user;
+    private $flashMessage;
 
     public function __construct()
     {
+
+        $this->flashMessage = new FlashMessage();
 
         if(!isset($_SESSION['role']) || !isset($_SESSION['auth']))
         {
@@ -58,5 +61,9 @@ class Session
     public function getUserId()
     {
       return $_SESSION['user']->getId();
+    }
+
+    public function getFlashMessage() {
+      return $this->flashMessage;
     }
 }

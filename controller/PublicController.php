@@ -21,8 +21,22 @@ class PublicController extends Controller
 
   public function signin() {
       $authService = new AuthentificationService($this->session);
-      $authService->auth($this->request->get('login'), $this->request->get('password'));
+      if(!$authService->auth($this->request->get('login'), $this->request->get('password'))) {
+          $this->session->getFlashMessage()->setMessage('Erreur', "Problème de login ou password. Saisie incorrecte.");
+          $this->redirect('login');
+      }
       $this->redirect('dashboard');
+  }
+
+  public function createAccount() {
+      $this->setBaseTemplate('public');
+      $this->render('public/createAccount');
+  }
+
+  public function register() {
+      $authService = new AuthentificationService($this->session);
+
+      echo '<pre>'; print_r($_REQUEST); echo '</pre>'; exit;
   }
 
   public function logout()

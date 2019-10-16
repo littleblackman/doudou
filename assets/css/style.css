@@ -12,6 +12,9 @@ html {
 }
 
 footer {position: absolute; bottom: 0; left: 0; right: 0; }
+#toast-container { position: absolute; width: 100%; top: 0; left: 0; max-width: 100%}
+.toast { justify-content: normal; display: inline-block; width: 100%; max-width: 100%}
+.flashMessageBar { background-color: #42a5f5!important;}
 
 #mainContent {
   margin: 0 auto; width: 90%; margin-bottom: 160px
