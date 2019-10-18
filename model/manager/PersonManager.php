@@ -13,11 +13,19 @@ class PersonManager extends BddManager
                     lastname = :lastname,
                     email = :email
                     ";
+        } else {
+          $query = "UPDATE person SET
+                    firstname = :firstname,
+                    lastname = :lastname,
+                    email = :email
+                    WHERE
+                    person_id = :id ";
         }
         $stmt = $this->prepare($query);
         $stmt->bindValue(':firstname', $object->getFirstname());
         $stmt->bindValue(':lastname', $object->getLastname());
         $stmt->bindValue(':email', $object->getEmail());
+        if($object->getId()) $stmt->bindValue(':person_id', $object->getId());
         $stmt->execute();
 
         $lastId =  $this->connexion()->lastInsertId();

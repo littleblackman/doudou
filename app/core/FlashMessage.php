@@ -19,6 +19,7 @@ class FlashMessage
     }
 
     public function hasMessage() {
+        if(!isset($_SESSION['hasMessage'])) return null;
         return  $_SESSION['hasMessage'];
     }
 

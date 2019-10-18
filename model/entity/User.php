@@ -9,6 +9,7 @@ class User extends EntityConfiguration
     private $password;
     private $person;
     private $role;
+    private $isActive;
 
     public function getEntityName()
     {
@@ -80,6 +81,17 @@ class User extends EntityConfiguration
         return $this->role;
     }
 
+    public function setIsActive($is_active)
+    {
+      $this->isActive = $is_active;
+      return $this;
+    }
+
+    public function getIsActive()
+    {
+        return $this->isActive;
+    }
+
     public function getFullname()
     {
         return $this->getPerson()->getFullname();
@@ -99,5 +111,6 @@ class User extends EntityConfiguration
     {
         return $this->getPerson()->getEmail();
     }
+
 
 }

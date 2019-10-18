@@ -118,7 +118,16 @@ class Request
     public function secure($params) {
       $datas = [];
       foreach($params as $key => $value) {
-          $datas[$key] = htmlspecialchars($value);
+
+          if(is_array($value)) {
+            foreach($value as $k => $v) {
+              $datas[$key][$k] = $v;
+            }
+          } else {
+            $datas[$key] = htmlspecialchars($value);
+
+          }
+
       }
       return $datas;
     }
