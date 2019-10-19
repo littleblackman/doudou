@@ -2,19 +2,28 @@
       <h1>Deviens un doudou liker</h1>
       <div class="row" style="text-align: center">
           <form action = "<?= HOST;?>register" method="POST" class="col s12">
-            <input type="hidden" name="is_active" value=0 />
+            <input type="hidden" name="is_active" value=1 />
             <div class="row">
               <div class="input-field col s12">
                 <input id="firstname" type="text" name="firstname" class="validate">
-                <label for="firstname">Prénom</label>
+                <label for="firstname">
+                  Prénom
+                  <span id="firstnameError" class="errorMessage"></span>
+                </label>
               </div>
               <div class="input-field col s12">
                 <input id="lastname" type="text" name="lastname" class="validate">
-                <label for="lastname">Nom</label>
+                <label for="lastname">
+                  Nom
+                  <span id="lastnameError" class="errorMessage"></span>
+                </label>
               </div>
               <div class="input-field col s12">
                 <input id="login" type="text" name="login" class="validate">
-                <label for="login">Identifiant</label>
+                <label for="login">
+                  Identifiant
+                  <span id="loginError" class="errorMessage"></span>
+                </label>
               </div>
               <div class="input-field col s12">
                 <input id="email" type="text" name="email" class="validate">

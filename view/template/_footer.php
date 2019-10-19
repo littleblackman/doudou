@@ -21,7 +21,7 @@
     <div class="footer-copyright">
       <div class="container">
       © 2019 copyright etsik
-      <a class="grey-text text-lighten-4 right" target="_blank" href="www.littleblackman.me">le site de litteblackman</a>
+      <a class="grey-text text-lighten-4 right" target="_blank" href="http://www.littleblackman.me">le site de litteblackman</a>
       </div>
     </div>
   </footer>

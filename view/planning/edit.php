@@ -16,11 +16,17 @@
       <div class="row">
         <div class="input-field col s6">
           <input id="name" type="text" name="data[name]" class="validate" value="<?= $planning->getName();?>">
-          <label for="name">Nom</label>
+          <label for="name">
+            Nom
+            <span id="nameError" class="errorMessage"></span>
+          </label>
         </div>
         <div class="input-field col s6">
           <input id="slug" type="text"  name="data[public_link]" class="validate" value="<?= $planning->getPublicLink();?>" >
-          <label for="slug">Slug (lien publique)</label>
+          <label for="slug">
+            Slug (lien publique)
+            <span id="slugError" class="errorMessage"></span>
+          </label>
         </div>
       </div>
       <div class="row">
@@ -38,7 +44,7 @@
       </div>
 
 
-      <button class="btn waves-effect waves-light btn-fullwidth blue lighten-1" type="submit" hname="action">
+      <button class="btn waves-effect waves-light btn-fullwidth blue lighten-1" type="submit" name="action" id="submitButton">
           <?= $text;?>
           <i class="material-icons right">send</i>
       </button>
@@ -51,3 +57,6 @@
       <?php include('_calendar.php');?>
     </div>
   <?php endif;?>
+
+
+  <script src="<?= JS;?>edit.js"></script>

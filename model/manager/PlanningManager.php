@@ -85,7 +85,7 @@ class PlanningManager extends BddManager
         $stmt = $this->prepare($query);
         $stmt->bindValue(':slug', $slug);
         $stmt->execute();
-        if(!$data = $stmt->fetch(PDO::FETCH_ASSOC)) return null;
+        if(!$data = $stmt->fetch(PDO::FETCH_ASSOC)) return false;
 
         $planning = $this->createFromArray($data);
 

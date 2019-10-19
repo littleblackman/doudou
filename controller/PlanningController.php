@@ -62,9 +62,18 @@ class PlanningController extends Controller
       $this->redirect('modification-planning/'.$last_id);
   }
 
+  public function validateSlug() {
+
+      $manager = new PlanningManager();
+      $planning = $manager->findBySlug($this->request->get('slug'));
+
+      ($planning) ? $result = 1 : $result = 0;
+
+      $this->renderString($result);
+  }
+
   public function navCalendar()
   {
-
       $calendar  = new CalendarService($this->request->get('targetDate'));
       $manager = new PlanningManager();
       $planning = $manager->find($this->request->get('idPlanning'));

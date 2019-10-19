@@ -45,6 +45,17 @@ class UserManager extends BddManager
           return $user;
     }
 
+    public function loginIsExist($login) {
+            $query = "SELECT * FROM user u
+                      WHERE u.login = :login
+                      ";
+            $stmt = $this->prepare($query);
+            $stmt -> bindValue(':login', $login);
+            $stmt -> execute();
+            if(!$data = $stmt->fetch(PDO::FETCH_ASSOC)) return 0;
+            return 1;
+    }
+
 
     public function save($user)
     {

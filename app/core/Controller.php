@@ -78,6 +78,10 @@ class Controller
         echo json_encode($datas);
     }
 
+    public function renderString($string) {
+        echo $string;
+    }
+
     public function redirect($template) {
       $this->view->redirect($template);
     }

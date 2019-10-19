@@ -40,7 +40,12 @@ class PublicController extends Controller
           $this->session->getFlashMessage()->setMessage('Confirmation', "Votre compte a été créé. Activez-le en cliquant sur lien reçu par email");
           $this->redirect('login');
       }
+  }
 
+  public function validateLogin() {
+      $manager = new UserManager();
+      $result = $manager->loginIsExist($this->request->get('login'));
+      $this->renderString($result);
   }
 
   public function logout()
