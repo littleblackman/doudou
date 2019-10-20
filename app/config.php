@@ -94,6 +94,10 @@ class MyConfiguration
         define('DEFAULT_SENDER', $parameters['default_sender']);
         define('DEFAULT_SENDER_NAME', $parameters['default_sender_name']);
 
+        //home route
+        define('HOME_PUBLIC', $parameters['home_public']);
+        define('HOME_PRIVATE', $parameters['home_private']);
+
     }
 
     /**

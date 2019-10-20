@@ -27,10 +27,40 @@ class Controller
         $this->roles = explode(',', ROLE_PRIORITY);
         $this->baseTemplate = BASE_TEMPLATE;
 
-        if(!$this->checkIfIsAuthorized()) {
-          $this->redirect("login");
-        }
+        // check security and auth
+        $this->checkAndInitApp();
+
     }
+
+
+    public function checkAndInitApp() {
+
+          // check if user not logged, try to connect
+          if(!$this->session->isLogged()) {
+            if(isset($_COOKIE['identifiant'])) {
+                $identifiant = base64_decode($_COOKIE['identifiant']);
+                $elements = explode('(doudou)', $identifiant);
+                $login = $elements[0];
+                $pwd   = $elements[1];
+                $authentificationService = new AuthentificationService($this->session);
+                if($authentificationService->autoconnect($login, $pwd)) {
+                    $this->redirect($this->request->getRoute());
+                }
+            }
+          }
+
+
+          // check if user is authorized
+          if(!$this->checkIfIsAuthorized()) {
+            $this->redirect("login");
+          }
+
+          // if user logged redirect to the home private
+          if($this->request->getRoute() == HOME_PUBLIC && $this->session->isLogged()) {
+            $this->redirect(HOME_PRIVATE);
+          }
+    }
+
 
     public function getRoles()
     {

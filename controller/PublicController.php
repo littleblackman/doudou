@@ -50,7 +50,7 @@ class PublicController extends Controller
 
   public function logout()
   {
-    session_destroy();
+    $this->session->destroy();
     $this->redirect('login');
   }
 }

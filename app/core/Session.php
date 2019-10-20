@@ -9,7 +9,6 @@ class Session
 
     public function __construct()
     {
-
         $this->flashMessage = new FlashMessage();
 
         if(!isset($_SESSION['role']) || !isset($_SESSION['auth']))
@@ -20,7 +19,6 @@ class Session
           $user = $manager->find($_SESSION['user_id']);
           $this->user = $user;
         }
-
     }
 
     public function initUserSession($user) {
@@ -29,11 +27,27 @@ class Session
         $_SESSION['role']    = $user->getRole();
         $_SESSION['auth']    = 1;
         $this->user = $user;
+
+        // add cookie
+        $identifiant   = base64_encode($user->getLogin().'(doudou)'.$user->getPassword());
+        setcookie('identifiant', $identifiant, time() + 365*24*3600, null, null, false, true);
+    }
+
+    public function destroy() {
+        session_destroy();
+        unset($_COOKIE["identifiant"]);
+        setcookie('identifiant', '', 1);
+
     }
 
     public function getRole()
     {
         return $_SESSION['role'];
+    }
+
+    public function isLogged() {
+      if($this->getAuth() != 1) return false;
+      return true;
     }
 
     public function getAuth()
