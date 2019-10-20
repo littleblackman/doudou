@@ -29,18 +29,19 @@ class PlanningManager extends BddManager
         $datas = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
         // nb time booked
-        $query = "SELECT
-                  p.id_planning, count(t.id_time_slot) as nb_time_slot_booked
-                  FROM planning p
-                  LEFT JOIN time_slot as t ON t.planning_id = p.id_planning
-                  WHERE p.user_id = :id
-                  AND t.is_booked = 1";
+        $query = "SELECT p.id_planning, count(t.id_time_slot) as nb_time_slot_booked
+                  FROM time_slot t
+                  LEFT JOIN planning p ON p.id_planning = t.planning_id
+                  WHERE
+                  1 = 1
+                  AND p.user_id = :id
+                  AND t.is_booked = 1
+                  GROUP BY p.id_planning";
 
         $stmt = $this->prepare($query);
         $stmt -> bindValue(':id', $user_id);
         $stmt -> execute();
         $datas2 = $stmt->fetchAll(PDO::FETCH_ASSOC);
-
 
         // list of booked
         foreach($datas2 as $d) {
@@ -57,6 +58,8 @@ class PlanningManager extends BddManager
           $planning->setUser($user);
           $plannings[] = $planning;
         }
+
+
 
         return $plannings;
     }
