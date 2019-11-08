@@ -37,7 +37,7 @@ class PublicController extends Controller
       $authService = new AuthentificationService($this->session);
       if($authService->register($this->request->getParams())) {
           // send email notification
-          $this->session->getFlashMessage()->setMessage('Confirmation', "Votre compte a été créé. Activez-le en cliquant sur lien reçu par email");
+          $this->session->getFlashMessage()->setMessage('Confirmation', "Votre compte a été créé. Il est désormais actif");
           $this->redirect('login');
       }
   }
