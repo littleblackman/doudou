@@ -6,6 +6,8 @@
           <div id="nav-left">
             <a href="<?= HOST;?>home">Home</a>
             <a href="<?= HOST;?>dashboard">Planning</a>
+            <a href="<?= HOST;?>survey">Sondage</a>
+
           </div>
           <div style="text-align: center">
                 <a href="<?= HOST;?>dashboard" alt="ice coffee dashboard">
