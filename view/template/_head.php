@@ -17,7 +17,10 @@
     <link rel="apple-touch-icon" sizes="180x180" href="<?= IMG;?>favicon/apple-touch-icon.png">
     <link rel="icon" type="image/png" sizes="32x32" href="<?= IMG;?>favicon/favicon-32x32.png">
     <link rel="icon" type="image/png" sizes="16x16" href="<?= IMG;?>favicon/favicon-16x16.png">
+
+    <!-- Manifest.json --->
     <link rel= "manifest" href= "<?= HOST;?>manifest.json">
+
     <link rel="mask-icon" href="<?= IMG;?>favicon/safari-pinned-tab.svg" color="#5bbad5">
     <meta name="msapplication-TileColor" content="#ef9a9a">
     <meta name="theme-color" content="#ef9a9a">
@@ -40,7 +43,10 @@
     <!-- Compiled and minified JavaScript -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
 
-    <!-- Manifest.json --->
+
+    <!--- Font awesome --->
+    <link href="<?= CSS;?>fontawesome5112/css/all.css" rel="stylesheet"> <!--load all styles -->
+
 
     <!-- CSS perso --->
     <link rel="stylesheet" href="<?= CSS;?>style.css"/>
